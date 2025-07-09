@@ -1,0 +1,59 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block contents %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2e7d32;
+        }
+        .accuracy {
+            font-size: 1.2em;
+            color: #004d40;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .confusion-matrix {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Milk Quality Prediction Results</h1>
+        <div class="accuracy">
+            <p><strong>Model Accuracy:</strong> {{ accuracy }}</p>
+        </div>
+        <div class="confusion-matrix">
+            <h2>Confusion Matrix</h2>
+            <img src="/{{ cm_image_path }}" alt="Confusion Matrix">
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block contents %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Milk Quality Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(76, 52, 133, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            <h1 style="color:blue;text-align:center">Milk Quality Prediction</h1>
+         
+            {% if prediction is not None %}
+            <div class="prediction" style="background-color:black">
+                <h2 style="color:red; ">Milk Quality is: {{ prediction }}</h2>
+            </div>
+
+        {% endif %}
+
+            <div class="form-group">
+                <label for="pH">pH:</label>
+                <input type="text" id="pH" name="pH" required>
+            </div>
+
+            <div class="form-group">
+                <label for="temperature">Temperature (Celsius):</label>
+                <input type="text" id="temperature" name="temperature" required>
+            </div>
+
+            <div class="form-group">
+                <label>Taste:</label>
+                <div class="radio-group">
+                    <label for="taste-good">
+                        <input type="radio" id="taste-good" name="taste" value="1" required> Good
+                    </label>
+                    <label for="taste-bad">
+                        <input type="radio" id="taste-bad" name="taste" value="0"> Bad
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Odor:</label>
+                <div class="radio-group">
+                    <label for="odor-good">
+                        <input type="radio" id="odor-good" name="odor" value="1" required> Good
+                    </label>
+                    <label for="odor-bad">
+                        <input type="radio" id="odor-bad" name="odor" value="0"> Bad
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Fat:</label>
+                <div class="radio-group">
+                    <label for="fat-high">
+                        <input type="radio" id="fat-high" name="fat" value="1" required> High
+                    </label>
+                    <label for="fat-low">
+                        <input type="radio" id="fat-low" name="fat" value="0"> Low
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Turbidity:</label>
+                <div class="radio-group">
+                    <label for="turbidity-high">
+                        <input type="radio" id="turbidity" name="turbidity" value="1" required> High
+                    </label>
+                    <label for="turbidity-low">
+                        <input type="radio" id="turbidity" name="turbidity" value="0"> Low
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="colour">Colour (240 to 255):</label>
+                <input type="text" id="colour" name="colour" required>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+     
+    </div>
+</body>
+</html>
+{% endblock %}
