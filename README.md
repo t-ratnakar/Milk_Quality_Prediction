@@ -2,6 +2,7 @@
 
 A Django-based web application that predicts the **quality of milk** (Good, Medium, or Bad) using a trained machine learning model. This project aims to automate milk quality analysis based on chemical parameters and provide real-time results to users and admins.
 
+
 ---
 
 ## Features
